@@ -1,1 +1,53 @@
 <p>sign-up works!</p>
+<div class="displayTable">
+    <div class="displayTableCell"  >
+  
+      <div class="px-logo" fxLayoutAlign="center center" >
+          <img height="200px" style="padding: 10px;" src="https://s13emagst.akamaized.net//products/3378/3377702/media/res_024bc3257172a6b657226cc00b524252.jpg" alt="logo">
+      </div>
+  
+      <div class="authBlock" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <h1>Sign Up</h1>
+  
+        <mat-form-field>
+          <input type="email" matInput placeholder="Your email" #userEmail ngModel name="email" email required >
+          <mat-error >Field must not be empty.</mat-error>
+          <mat-error >E-Mail is invalid.</mat-error>
+        </mat-form-field>
+        <!--<div class="formGroup">
+          <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
+        </div>-->
+        
+        <mat-form-field hintLabel="Should be at least 6 characters long.">
+          <input type="password" matInput placeholder="Your password" #userPwd ngModel name="password" required minlength="6" >
+          <mat-error>Has to be at least 6 characters long.</mat-error>
+        </mat-form-field>
+        <!--
+        <div class="formGroup">
+          <input type="password" class="formControl" placeholder="Password" #userPwd required>
+        </div>-->
+  
+        <div class="formGroup">
+          <button type="button" mat-raised-button color="primary">Sign Up</button>
+        </div>
+  
+        <div class="formGroup">
+          <span class="or"><span class="orInner">Or</span></span>
+        </div>
+  
+        <!-- Continue with Google -->
+        <div class="formGroup">
+          <button type="button" mat-raised-button class="btn googleBtn">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">mail</mat-icon>
+            Continue with Google
+          </button>
+        </div>
+        
+      </div>
+  
+      <div class="redirectToLogin" fxLayoutAlign="center center">
+        <span>Already have an account? <span class="redirect" routerLink="/login">Log In</span></span>
+      </div>
+    </div>
+  
+  </div>

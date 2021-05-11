@@ -1,1 +1,55 @@
-<p>sign-in works!</p>
+<div class="displayTable">
+    <div class="displayTableCell">
+  
+      <div class="px-logo" fxLayoutAlign="center center" >
+        <img height="200px" style="padding: 10px;" src="https://s13emagst.akamaized.net//products/3378/3377702/media/res_024bc3257172a6b657226cc00b524252.jpg" alt="logo">
+      </div>
+  
+      <div class="authBlock" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+        <h1>Sign In</h1>
+  
+        <mat-form-field>
+          <input type="email" matInput placeholder="Your email" #userName ngModel email name="username" required>
+        </mat-form-field>
+        <!--
+        <div class="formGroup">
+          <input type="text" class="formControl" placeholder="Username" #userName required>
+        </div>-->
+  
+        <mat-form-field>
+          <input type="password" matInput placeholder="Your password" #userPassword ngModel name="password" required>
+        </mat-form-field><!--
+        <div class="formGroup">
+          <input type="password" class="formControl" placeholder="Password" #userPassword required>
+        </div>-->
+  
+        <!-- Calling SignIn Api from AuthService -->
+        <div class="formGroup">
+          <button mat-raised-button color="accent" >Log In</button>
+        </div>
+  
+        <div class="formGroup">
+          <span class="or"><span class="orInner">Or</span></span>
+        </div>
+  
+        <!-- Calling GoogleAuth Api from AuthService -->
+        <div class="formGroup">
+          <button type="button" mat-raised-button color="primary" class="btn googleBtn">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">mail</mat-icon>
+            Log in with Google
+          </button>
+        </div>
+  
+        <div class="forgotPassword">
+          <span routerLink="/forgot-password">Forgot Password?</span>
+        </div>
+  
+        <div class="redirectToLogin">
+          <span>Don't have an account?<span class="redirect" routerLink="/register"> Sign Up</span></span>
+        </div>
+      </div>
+  
+      
+  
+    </div>
+  </div>

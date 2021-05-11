@@ -10,6 +10,7 @@ import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
 import { GameComponent } from './game/game.component';
 import { SignInComponent } from './auth/components/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
