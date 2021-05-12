@@ -10,4 +10,8 @@ export class UserService {
   SignUp(username: string, email: string, password: string) {
     return this.webReqService.post('users/register', {username, email, password});
   }
+
+  AllUsers() {
+    return this.webReqService.get('users/get/all');
+  }
 }

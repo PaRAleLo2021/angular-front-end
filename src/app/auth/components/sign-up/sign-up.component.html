@@ -8,13 +8,13 @@
       <div class="authBlock" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
         <h1>Sign Up</h1>
 
-        <mat-form-field>
+        <mat-form-field hintLabel="Only letters and numbers.">
           <input type="username" matInput placeholder="Your username" #userName ngModel name="username" required >
           <mat-error >Field must not be empty.</mat-error>
           <mat-error >Username already exists.</mat-error>
         </mat-form-field>
   
-        <mat-form-field>
+        <mat-form-field hintLabel="Valid email address.">
           <input type="email" matInput placeholder="Your email" #userEmail ngModel name="email" email required >
           <mat-error >Field must not be empty.</mat-error>
           <mat-error >E-Mail is invalid.</mat-error>
