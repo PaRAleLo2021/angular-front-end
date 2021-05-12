@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { User } from '../include/user.model';
 import { UserService } from '../include/user.service';
 
 @Component({
@@ -7,7 +9,9 @@ import { UserService } from '../include/user.service';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent implements OnInit {
-
+  displayedColumns: string[] = ['id', 'username', 'email', 'rank', 'createdAt', 'updatedAt'];
+  users: Observable<User[]>;
+  count: number;
 
   constructor(private userService: UserService) { }
 
@@ -15,9 +19,10 @@ export class GameComponent implements OnInit {
     this.gameUsers();
   }
 
-  private gameUsers() {
+  private gameUsers(){
     this.userService.AllUsers().subscribe((response: any) => {
-      return response;
+      this.users = response.users;
+      this.count = response.count;
     });
   }
 
