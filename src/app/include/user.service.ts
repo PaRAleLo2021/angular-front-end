@@ -14,4 +14,8 @@ export class UserService {
   AllUsers() {
     return this.webReqService.get('users/get/all');
   }
+
+  SignIn(email: string, password: string) {
+    return this.webReqService.post('users/login', {email, password});
+  }
 }

@@ -9,23 +9,16 @@
         <h1>Sign In</h1>
   
         <mat-form-field>
-          <input type="email" matInput placeholder="Your email" #userName ngModel email name="username" required>
+          <input type="email" matInput placeholder="Your email" #userEmail ngModel email name="email" required>
         </mat-form-field>
-        <!--
-        <div class="formGroup">
-          <input type="text" class="formControl" placeholder="Username" #userName required>
-        </div>-->
-  
+        
         <mat-form-field>
           <input type="password" matInput placeholder="Your password" #userPassword ngModel name="password" required>
-        </mat-form-field><!--
-        <div class="formGroup">
-          <input type="password" class="formControl" placeholder="Password" #userPassword required>
-        </div>-->
+        </mat-form-field>
   
         <!-- Calling SignIn Api from AuthService -->
         <div class="formGroup">
-          <button mat-raised-button color="accent" >Log In</button>
+          <button mat-raised-button (click)="login(userEmail.value, userPassword.value)" >Log In</button>
         </div>
   
         <div class="formGroup">
