@@ -13,6 +13,7 @@ import { SignUpComponent } from './auth/components/sign-up/sign-up.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './navigation/header/header.component';
+import { RoomComponent } from './game/room/room.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HeaderComponent } from './navigation/header/header.component';
     GameComponent,
     SignInComponent,
     SignUpComponent,
-    HeaderComponent
+    HeaderComponent,
+    RoomComponent
   ],
   imports: [
     BrowserModule,
