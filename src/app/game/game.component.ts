@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { User } from '../include/user.model';
-import { UserService } from '../include/user.service';
+import { User } from '../_include/user.model';
+import { UserService } from '../_include/user.service';
 
 @Component({
   selector: 'app-game',
