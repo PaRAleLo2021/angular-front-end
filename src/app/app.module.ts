@@ -14,6 +14,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './navigation/header/header.component';
 import { RoomComponent } from './game/room/room.component';
+import { ProfileComponent } from './auth/components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RoomComponent } from './game/room/room.component';
     SignInComponent,
     SignUpComponent,
     HeaderComponent,
-    RoomComponent
+    RoomComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
