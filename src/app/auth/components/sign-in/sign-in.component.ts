@@ -41,7 +41,9 @@ export class SignInComponent implements OnInit {
   }
 
   reloadPage(): void {
-    this.router.navigate(['profile']);
-    window.location.reload();
+    this.router.navigate(['profile']).then(() => {
+      window.location.reload();
+    });
+    
   }
 }
