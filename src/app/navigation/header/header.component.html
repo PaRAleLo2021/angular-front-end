@@ -10,19 +10,19 @@
     <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
       <ul fxLayout fxLayoutGap="10px" class="navigation-items">
         <li>
-          <a routerLink="/register">Register</a>
+          <a routerLink="/register" *ngIf="!isLoggedIn">Register</a>
         </li>
         <li>
-          <a routerLink="/login">Login</a>
+          <a routerLink="/login" *ngIf="!isLoggedIn">Login</a>
         </li>
         <li>
-          <a routerLink="/profile">Profile</a>
+          <a routerLink="/profile" *ngIf="isLoggedIn">Profile</a>
         </li>
         <li>
-          <a routerLink="/game">Play</a>
+          <a routerLink="/game" *ngIf="isLoggedIn">Play</a>
         </li>
         <li>
-          <a routerLink="/logout">Logout</a>
+          <a *ngIf="isLoggedIn" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>

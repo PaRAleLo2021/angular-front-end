@@ -3,26 +3,26 @@
         <mat-icon>home</mat-icon>
         <span class="nav-caption">Home</span>
     </a>
-    <a mat-list-item routerLink="/register" (click)="onClose()">
+    <a mat-list-item routerLink="/register" (click)="onClose()" *ngIf="!isLoggedIn">
       <mat-icon>face</mat-icon>
       <span class="nav-caption">Register</span>
     </a>
-    <a mat-list-item routerLink="/profile" (click)="onClose()">
+    <a mat-list-item routerLink="/profile" (click)="onClose()" *ngIf="isLoggedIn">
       <mat-icon>face</mat-icon>
       <span class="nav-caption">Profile</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="onClose()">
+    <a mat-list-item routerLink="/login" (click)="onClose()" *ngIf="!isLoggedIn">
       <mat-icon>input</mat-icon>
       <span class="nav-caption">Login</span>
     </a>
-    <a mat-list-item routerLink="/game" (click)="onClose()">
+    <a mat-list-item routerLink="/game" (click)="onClose()" *ngIf="isLoggedIn">
         <mat-icon>games</mat-icon>
         <span class="nav-caption">Play</span>
     </a>
-    <mat-list-item>
+    <mat-list-item *ngIf="isLoggedIn">
       <button mat-icon-button >
         <mat-icon>eject</mat-icon>
-        <span class="nav-caption">Logout</span>
+        <span class="nav-caption" (click)="logout()">Logout</span>
       </button>
     </mat-list-item>
   </mat-nav-list>
