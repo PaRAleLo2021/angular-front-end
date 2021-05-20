@@ -34,7 +34,7 @@ import { ProfileComponent } from './auth/components/profile/profile.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

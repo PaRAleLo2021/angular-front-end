@@ -1,6 +1,18 @@
-<div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%">
+<div fxFlex="66%" fxFlex.xs="90%" fxFlex.sm="80%" style="margin: 20px">
+    <mat-card fxLayout="column" fxLayoutAlign="center">
+        <mat-card-title style="padding-bottom: 20px;">New Game</mat-card-title>
+        <mat-card-subtitle>Press the button to enter the game.</mat-card-subtitle>
+        <button mat-raised-button mat-button color="primary" (click)="sendUserGameToPhaserClient()">Enter Game</button>
+    </mat-card>
+</div>
+
+<div fxFlex="33%" fxFlex.xs="90%" fxFlex.sm="40%">
 <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap>
-    <mat-card-title >Join a Game Room</mat-card-title>
+    <mat-card-title style="padding-bottom: 20px;">PRIVATE</mat-card-title>
+    <mat-card-title style="padding-bottom: 20px;">Create a Game Room</mat-card-title>
+    <mat-card-subtitle>Generate a new room ID and share it with your friends.</mat-card-subtitle>
+    <button mat-raised-button mat-button color="primary" style="margin-top: 10px">Create</button>
+    <mat-card-title style="padding-bottom: 20px;">Join a Game Room</mat-card-title>
     <mat-card-subtitle>Have a room ID? Join a private game and play with your friends.</mat-card-subtitle>
     <form class="join-id" div fxLayout="row" fxLayoutAlign="center center">
         <mat-form-field>
@@ -9,14 +21,13 @@
         </mat-form-field>
         <button mat-raised-button mat-button color="primary">Join</button>
     </form>
-    <mat-card-subtitle>Dont have an ID? No problem, join a public game. </mat-card-subtitle>
-    <button mat-raised-button mat-button color="primary">Join</button>
 </mat-card>
 </div>
 
-<div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%">
+<div fxFlex="33%" fxFlex.xs="90%" fxFlex.sm="40%">
 <mat-card fxLayout="column" fxLayoutAlign="center">
-    <mat-card-title>Create a Game Room</mat-card-title>
-    <button mat-raised-button mat-button color="primary" style="margin-top: 10px">Create</button>
+    <mat-card-title style="padding-bottom: 20px;">PUBLIC</mat-card-title>
+    <mat-card-subtitle>Dont have an ID? No problem, join a public game. </mat-card-subtitle>
+    <button mat-raised-button mat-button color="primary">Join</button>
 </mat-card>
 </div>

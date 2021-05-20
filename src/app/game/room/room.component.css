@@ -5,15 +5,21 @@
 }
 
 .mat-card-subtitle{
-    margin-top: 50px !important;
+    margin-top: 10px;
     margin-bottom: 5px;
     font-size: 20px;
     line-height: normal;
 }
 
+.mat-card-title {
+    margin: 20px auto 0 auto;
+}
+
 .mat-button {
     margin: auto;
     width: 100px;
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 .mat-form-field {
