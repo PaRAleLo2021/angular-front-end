@@ -1,12 +1,12 @@
-<div fxFlex="66%" fxFlex.xs="90%" fxFlex.sm="80%" style="margin: 20px">
+<div fxFlex="66%" fxFlex.xs="90%" fxFlex.sm="80%" style="margin: 20px" *ngIf="isGame">
     <mat-card fxLayout="column" fxLayoutAlign="center">
-        <mat-card-title style="padding-bottom: 20px;">New Game</mat-card-title>
+        <mat-card-title style="padding-bottom: 20px;">New Game: {{gameID}}</mat-card-title>
         <mat-card-subtitle>Press the button to enter the game.</mat-card-subtitle>
-        <button mat-raised-button mat-button color="primary" (click)="sendUserGameToPhaserClient()">Enter Game</button>
+        <a mat-raised-button mat-button color="primary" (click)="openGame()">Enter Game</a>
     </mat-card>
 </div>
 
-<div fxFlex="33%" fxFlex.xs="90%" fxFlex.sm="40%">
+<div fxFlex="33%" fxFlex.xs="90%" fxFlex.sm="33%">
 <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayoutGap>
     <mat-card-title style="padding-bottom: 20px;">PRIVATE</mat-card-title>
     <mat-card-title style="padding-bottom: 20px;">Create a Game Room</mat-card-title>
@@ -14,20 +14,23 @@
     <button mat-raised-button mat-button color="primary" style="margin-top: 10px">Create</button>
     <mat-card-title style="padding-bottom: 20px;">Join a Game Room</mat-card-title>
     <mat-card-subtitle>Have a room ID? Join a private game and play with your friends.</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="isFailedPrivateAdd">{{privateAddErrorMessage}}</mat-card-subtitle>
     <form class="join-id" div fxLayout="row" fxLayoutAlign="center center">
         <mat-form-field>
           <mat-label>Game ID</mat-label>
-          <input matInput placeholder="Ex. 12345">
+          <input matInput #id placeholder="Ex. 12345">
         </mat-form-field>
-        <button mat-raised-button mat-button color="primary">Join</button>
+        <div class="formGroup">
+        <a mat-raised-button mat-button color="primary" ngModel name="id" (click)="joinPrivate(id.value)">Join</a>
+        </div>
     </form>
 </mat-card>
 </div>
 
-<div fxFlex="33%" fxFlex.xs="90%" fxFlex.sm="40%">
+<div fxFlex="33%" fxFlex.xs="90%" fxFlex.sm="33%">
 <mat-card fxLayout="column" fxLayoutAlign="center">
     <mat-card-title style="padding-bottom: 20px;">PUBLIC</mat-card-title>
     <mat-card-subtitle>Dont have an ID? No problem, join a public game. </mat-card-subtitle>
-    <button mat-raised-button mat-button color="primary">Join</button>
+    <a mat-raised-button mat-button color="primary" (click)="joinPublic()">Join</a>
 </mat-card>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from 'src/app/_include/game.service';
 import { TokenStorageService } from 'src/app/_include/token-storage.service';
 import { User } from 'src/app/_include/user.model';
 
@@ -8,16 +9,60 @@ import { User } from 'src/app/_include/user.model';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
+  isGame = false;
+  isFailedPrivateAdd = false;
+  privateAddErrorMessage = "";
+  gameID: string = null;
+  game: any;
 
-  constructor(private token: TokenStorageService) { }
+  constructor(private token: TokenStorageService, private gameService: GameService) { }
   user: User;
 
   ngOnInit(): void {
     this.user = this.token.getUser();
   }
 
-  sendUserGameToPhaserClient () {
-    
+  openGame () {
+    if(this.gameID)
+      window.open("http://localhost:8080/?username="+this.user.username+"&gameid"+this.gameID, "_blank");
+  }
+
+  createPrivate () {
+
+  }
+
+  joinPrivate (id: string) {
+    let userID = this.user["username"];
+    let score = this.user["score"];
+    let cards: [number] = null;
+    let _id = id;
+    console.log (userID, score, cards, _id);
+    this.gameService.AddPlayer(userID, score, cards, _id).subscribe(
+      data => {
+        if(data["game"] != null){
+          this.game = data["game"];
+          this.isGame = true;
+          this.gameID = this.game["_id"];
+          this.isFailedPrivateAdd = false;
+          console.log("join private game successful "+this.game);
+          this.openGame();
+        } else {
+          this.isFailedPrivateAdd = true;
+          this.privateAddErrorMessage = "Game ID is incorect. Try another ID.";
+          console.log("join private game unsuccessful "+data["game"]);
+        }
+      },
+      err => {
+        this.privateAddErrorMessage = err.error.message;
+        this.isFailedPrivateAdd = true;
+        console.log("Join private game room failed "+err);
+      }
+    );
+  }
+
+  joinPublic () {
+    this.isGame = true;
+    this.gameID = "asdasdasda";
   }
 
 }

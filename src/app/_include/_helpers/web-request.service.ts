@@ -5,25 +5,43 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WebRequestService {
-  readonly ROOT_URL;
+  readonly ROOT_URL_USER;
+  readonly ROOT_URL_GAME;
 
   constructor(private http: HttpClient) { 
-    this.ROOT_URL = 'http://localhost:1337'
+    this.ROOT_URL_USER = 'http://localhost:1337';
+    this.ROOT_URL_GAME = 'http://localhost:1338';
   }
 
-  get(uri: string){
-    return this.http.get(`${this.ROOT_URL}/${uri}`);
+  getUser(uri: string){
+    return this.http.get(`${this.ROOT_URL_USER}/${uri}`);
   }
 
-  post(uri: string, payload: Object){
-    return this.http.post(`${this.ROOT_URL}/${uri}`, payload);
+  postUser(uri: string, payload: Object){
+    return this.http.post(`${this.ROOT_URL_USER}/${uri}`, payload);
   }
 
-  patch(uri: string, payload: Object){
-    return this.http.patch(`${this.ROOT_URL}/${uri}`, payload);
+  patchUser(uri: string, payload: Object){
+    return this.http.patch(`${this.ROOT_URL_USER}/${uri}`, payload);
   }
 
-  delete(uri: string){
-    return this.http.delete(`${this.ROOT_URL}/${uri}`);
+  deleteUser(uri: string){
+    return this.http.delete(`${this.ROOT_URL_USER}/${uri}`);
+  }
+
+  getGame(uri: string, payload: Object){
+    return this.http.get(`${this.ROOT_URL_GAME}/${uri}`, payload);
+  }
+
+  postGame(uri: string, payload: Object){
+    return this.http.post(`${this.ROOT_URL_GAME}/${uri}`, payload);
+  }
+
+  patchGame(uri: string, payload: Object){
+    return this.http.patch(`${this.ROOT_URL_GAME}/${uri}`, payload);
+  }
+
+  deleteGame(uri: string, payload: Object){
+    return this.http.delete(`${this.ROOT_URL_GAME}/${uri}`, payload);
   }
 }
