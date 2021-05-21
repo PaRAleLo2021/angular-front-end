@@ -28,7 +28,30 @@ export class RoomComponent implements OnInit {
   }
 
   createPrivate () {
+    let roomStatus = 0; 
+    let privateRoom = true;
+    let players: [{ userID: string, score: number, cards: [number]}] = [{ "userID": this.user.username, "score": 0, "cards": [0]}];
+    let unusedCards: [number] = null;
+    let storytellerID = this.user.username;
 
+    this.gameService.CreateGame(roomStatus, privateRoom,
+      players, unusedCards, storytellerID).subscribe(
+      data => {
+        if(data["game"] != null){
+          this.game = data["game"];
+          this.isGame = true;
+          this.gameID = this.game["_id"];
+          this.isFailedPrivateAdd = false;
+          console.log("create private game successful "+this.game);
+          this.openGame();
+        } else {
+          console.log("create private game unsuccessful "+data["game"]);
+        }
+      },
+      err => {
+        console.log("create private game room failed "+err);
+      }
+    );
   }
 
   joinPrivate (id: string) {

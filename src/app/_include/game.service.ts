@@ -13,9 +13,7 @@ export class GameService {
     return this.webReqService.getGame('games/get/game', {_id});
   }
 
-  CreateGame(roomStatus: number, privateRoom: Boolean,
-    players: { userID: string, score: number, cards: [number]},
-    unusedCards: [number], storytellerID: string) {
+  CreateGame(roomStatus: number, privateRoom: Boolean, players: [{ userID: string, score: number, cards: [number]}], unusedCards: [number], storytellerID: string) {
     return this.webReqService.postGame('games/add/game', { roomStatus, privateRoom, players, unusedCards, storytellerID });
   }
 

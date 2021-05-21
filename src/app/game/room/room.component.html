@@ -11,7 +11,7 @@
     <mat-card-title style="padding-bottom: 20px;">PRIVATE</mat-card-title>
     <mat-card-title style="padding-bottom: 20px;">Create a Game Room</mat-card-title>
     <mat-card-subtitle>Generate a new room ID and share it with your friends.</mat-card-subtitle>
-    <button mat-raised-button mat-button color="primary" style="margin-top: 10px">Create</button>
+    <a mat-raised-button mat-button color="primary" style="margin-top: 10px" (click)="createPrivate()">Create</a>
     <mat-card-title style="padding-bottom: 20px;">Join a Game Room</mat-card-title>
     <mat-card-subtitle>Have a room ID? Join a private game and play with your friends.</mat-card-subtitle>
     <mat-card-subtitle *ngIf="isFailedPrivateAdd">{{privateAddErrorMessage}}</mat-card-subtitle>
