@@ -1,3 +1,19 @@
+.container {
+    height: 97vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://cdn.pixabay.com/photo/2020/09/28/16/29/leaves-5610361_960_720.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.mat-card {
+    padding: 100px;
+    margin: 50px;
+    min-width: 50%;
+}
+
 .mat-card-image {
     width:300px;
     height: 300px;
@@ -8,10 +24,14 @@
 
 .mat-card-header {
     width: 300px;
-    margin: 0 50px;
+    margin: auto;
 }
 
 .mat-card-title {
     padding-bottom: 20px;
     font-size: xx-large;
+}
+
+.mat-icon-button {
+    margin-right: 40px;
 }

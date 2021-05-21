@@ -18,3 +18,8 @@ a {
     display: inline-block;
     padding-left: 6px;
   }
+
+  .mat-toolbar {
+    height: 3vw;
+    min-height: 50px;
+  }

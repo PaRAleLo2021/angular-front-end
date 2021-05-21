@@ -1,13 +1,51 @@
-<mat-card class="example-card" fxLayout="row wrap" fxLayoutGap="16px grid" fxLayoutAlign="center center" style="padding-top: 50px" *ngIf="currentUser; else loggedOut">
-    <div mat-card-image style="background-image: url(https://cdn.dribbble.com/users/1577045/screenshots/4914645/dribble_pic.png?compress=1&resize=400x300); background-size: cover; background-position: 50%" alt="player-avatar"></div>
+<div class="container" >
+<mat-card class="example-card" fxLayout="row wrap" fxLayoutGap="20px" fxFlexAlign="center" *ngIf="!isEditable">
+    <!--<div mat-card-image style="background-image: url(https://live.staticflickr.com/2194/5777504398_f26aa98485_n.jpg); background-size: cover; background-position: 50%" alt="player-avatar"></div>-->
     <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{currentUser.username}}</mat-card-title>
         <mat-card-subtitle>Email: {{currentUser.email}}</mat-card-subtitle>
         <mat-card-subtitle>Current score: <b>{{currentUser.score}}</b></mat-card-subtitle>
+        <mat-card-title>
+          <a mat-icon-button color="primary" aria-label="Edit Profile Information" (click)="isEditable=true">
+            <mat-icon>mode_edit</mat-icon>Edit
+          </a>
+        </mat-card-title>
       </mat-card-header>
   </mat-card>
 
-  <ng-template #loggedOut>
-    Please login.
-  </ng-template>
+
+  <mat-card class="example-card" fxLayout="row wrap" fxLayoutGap="20px" fxFlexAlign="center" *ngIf="isEditable">
+    <!--<div mat-card-image style="background-image: url(https://live.staticflickr.com/2194/5777504398_f26aa98485_n.jpg); background-size: cover; background-position: 50%" alt="player-avatar"></div>-->
+    <mat-card-header>
+      <mat-card-title>Edit Profile</mat-card-title>
+      <mat-card-subtitle>Fill one or all fields and save to change your profile.</mat-card-subtitle>
+      <mat-card-subtitle ><form>
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput #username placeholder="{{currentUser.username}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="email" matInput #email placeholder="{{currentUser.email}}">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>password</mat-label>
+          <input type="password" matInput #password>
+        </mat-form-field>
+      </form></mat-card-subtitle>
+        <mat-card-title>
+        <a mat-icon-button color="primary" aria-label="Save Edit" (click)="isEditable=false">
+          <mat-icon>save</mat-icon>Save
+        </a>
+        <a mat-icon-button color="primary" aria-label="Close Edit" (click)="isEditable=false">
+          <mat-icon>close</mat-icon>Cancel
+        </a>
+        <button mat-icon-button color="warn" aria-label="Delete User" (click)="openDialog()">
+          <mat-icon>delete</mat-icon>Delete User
+        </button >
+        </mat-card-title>
+
+        <mat-card-title></mat-card-title>
+      </mat-card-header>
+  </mat-card>
+</div>
