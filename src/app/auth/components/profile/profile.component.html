@@ -30,11 +30,11 @@
         </mat-form-field>
         <mat-form-field>
           <mat-label>password</mat-label>
-          <input type="password" matInput #password>
+          <input type="password" matInput #password placeholder="">
         </mat-form-field>
       </form></mat-card-subtitle>
         <mat-card-title>
-        <a mat-icon-button color="primary" aria-label="Save Edit" (click)="isEditable=false">
+        <a mat-icon-button color="primary" aria-label="Save Edit" (click)="update(username.value, email.value, password.value)">
           <mat-icon>save</mat-icon>Save
         </a>
         <a mat-icon-button color="primary" aria-label="Close Edit" (click)="isEditable=false">

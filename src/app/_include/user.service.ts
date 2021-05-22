@@ -18,4 +18,8 @@ export class UserService {
   SignIn(email: string, password: string) {
     return this.webReqService.postUser('users/login', {email, password});
   }
+
+  UpdateProfile(_id: string, username: string, email: string, password: string) {
+    return this.webReqService.patchUser('users/patch', {_id, username, email, password});
+  }
 }
