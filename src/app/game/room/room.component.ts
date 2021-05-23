@@ -30,26 +30,29 @@ export class RoomComponent implements OnInit {
   createPrivate () {
     let roomStatus = 0; 
     let privateRoom = true;
-    let players: [{ userID: string, score: number, cards: [number]}] = [{ "userID": this.user.username, "score": 0, "cards": [0]}];
-    let unusedCards: [number] = null;
+    let players: [{ userID: string, score: number, cards: [number], playedCard: string, votedCard: string}] = [{ "userID": this.user.username, "score": 0, "cards": [0], playedCard: " ", votedCard: " "}];
+    let unusedCards: number[] = [0];
     let storytellerID = this.user.username;
+    let story = " ";
+    let storytellerCard = " ";
+    let winner : string[]= [" ", " ", " ", " "];
 
     this.gameService.CreateGame(roomStatus, privateRoom,
-      players, unusedCards, storytellerID).subscribe(
+      players, unusedCards, storytellerID, story, storytellerCard, winner).subscribe(
       data => {
         if(data["game"] != null){
           this.game = data["game"];
           this.isGame = true;
           this.gameID = this.game["_id"];
           this.isFailedPrivateAdd = false;
-          console.log("create private game successful "+this.game);
+          console.log("create private game successful "+JSON.stringify({game: this.game}, null, 4));
           this.openGame();
         } else {
-          console.log("create private game unsuccessful "+data["game"]);
+          console.log("create private game unsuccessful "+JSON.stringify({game: data}, null, 4));
         }
       },
       err => {
-        console.log("create private game room failed "+err);
+        console.log("create private game room failed "+err["message"]+JSON.stringify({error: err}, null, 4));
       }
     );
   }
@@ -57,35 +60,62 @@ export class RoomComponent implements OnInit {
   joinPrivate (id: string) {
     let userID = this.user["username"];
     let score = this.user["score"];
-    let cards: [number] = null;
+    let cards: number[] = null;
+    let playedCard: string = "";
+    let votedCard: string = "";
     let _id = id;
     console.log (userID, score, cards, _id);
-    this.gameService.AddPlayer(userID, score, cards, _id).subscribe(
+    this.gameService.JoinPrivateGame(userID, score, cards, playedCard, votedCard, _id).subscribe(
       data => {
         if(data["game"] != null){
           this.game = data["game"];
           this.isGame = true;
           this.gameID = this.game["_id"];
           this.isFailedPrivateAdd = false;
-          console.log("join private game successful "+this.game);
+          console.log("join private game successful "+JSON.stringify({game: this.game}, null, 4));
           this.openGame();
         } else {
           this.isFailedPrivateAdd = true;
           this.privateAddErrorMessage = "Game ID is incorect. Try another ID.";
-          console.log("join private game unsuccessful "+data["game"]);
+          console.log("join private game unsuccessful "+JSON.stringify({game: data["game"]}, null, 4));
         }
       },
       err => {
         this.privateAddErrorMessage = err.error.message;
         this.isFailedPrivateAdd = true;
-        console.log("Join private game room failed "+err);
+        console.log("Join private game room failed "+JSON.stringify({game: err}, null, 4));
       }
     );
   }
 
   joinPublic () {
-    this.isGame = true;
-    this.gameID = "asdasdasda";
+    let userID = this.user["username"];
+    let score = this.user["score"];
+    let cards: number[] = null;
+    let playedCard: string = "";
+    let votedCard: string = "";
+    console.log (userID, score, cards);
+    this.gameService.JoinPublicGame(userID, score, cards, playedCard, votedCard).subscribe(
+      data => {
+        if(data["game"] != null){
+          this.game = data["game"];
+          this.isGame = true;
+          this.gameID = this.game["_id"];
+          this.isFailedPrivateAdd = false;
+          console.log("join private game successful "+JSON.stringify({game: this.game}, null, 4));
+          this.openGame();
+        } else {
+          this.isFailedPrivateAdd = true;
+          this.privateAddErrorMessage = "Game ID is incorect. Try another ID.";
+          console.log("join private game unsuccessful "+JSON.stringify({game: data["game"]}, null, 4));
+        }
+      },
+      err => {
+        this.privateAddErrorMessage = err.error.message;
+        this.isFailedPrivateAdd = true;
+        console.log("Join private game room failed "+JSON.stringify({game: err}, null, 4));
+      }
+    );
   }
 
 }
