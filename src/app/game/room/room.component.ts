@@ -24,7 +24,7 @@ export class RoomComponent implements OnInit {
 
   openGame () {
     if(this.gameID)
-      window.open("http://localhost:8080/?username="+this.user.username+"&gameid"+this.gameID, "_blank");
+      window.open("http://localhost:8080/?username="+this.user.username+"&gameid="+this.gameID, "_blank");
   }
 
   createPrivate () {
