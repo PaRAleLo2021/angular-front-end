@@ -16,15 +16,15 @@ export class ProfileComponent implements OnInit {
   password: string;
   
 
-  constructor(public dialog: MatDialog, private token: TokenStorageService, private userService: UserService) { }
-
-  ngOnInit(): void {
+  constructor(public dialog: MatDialog, private token: TokenStorageService, private userService: UserService) {
     this.currentUser = this.token.getUser();
     console.log(this.currentUser);
     this.email = this.currentUser.email;
     this.username = this.currentUser.username;
     this.password = "";
   }
+
+  ngOnInit(): void { }
 
   update(username: string, email: string, password: string) {
     if(username=="")
@@ -34,7 +34,8 @@ export class ProfileComponent implements OnInit {
     console.log(username, email, password);
     this.userService.UpdateProfile(this.currentUser._id,username, email, password).subscribe(
       data => {
-        console.log("logged in successfull "+data["user"]);
+        let data2: any = data;
+        console.log("logged in successfull "+data2["user"]);
       },
       err => {
         console.log("logged in failed "+err);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Observable, of } from 'rxjs';
 import { User } from '../_include/user.model';
 import { UserService } from '../_include/user.service';
@@ -10,20 +11,23 @@ import { UserService } from '../_include/user.service';
 })
 export class GameComponent implements OnInit {
   displayedColumns: string[] = ['id', 'username', 'email', 'rank', 'createdAt', 'updatedAt'];
-  users: Observable<User[]>;
-  count: number;
+  //users: Observable<User[]> | undefined;
+  count: number | undefined;
+  users: MatTableDataSource<any[]>;
 
-  constructor(private userService: UserService) { }
-
-  ngOnInit(): void {
-    this.gameUsers();
-  }
-
-  private gameUsers(){
+  constructor(private userService: UserService) {
+    this.users = new MatTableDataSource<any[]>([]);
+    this.count = 0;
     this.userService.AllUsers().subscribe((response: any) => {
-      this.users = response.users;
+      this.users = new MatTableDataSource<any[]>(response.users);
       this.count = response.count;
     });
+   }
+
+  ngOnInit(): void { }
+
+  private gameUsers(){
+    
   }
 
 }

@@ -24,8 +24,9 @@ export class SignInComponent implements OnInit {
   login(email: string, pws: string) {
     this.userService.SignIn(email, pws).subscribe(
       data => {
-        this.tokenStorage.saveToken(data['token']);
-        this.tokenStorage.saveUser(data['user']);
+        let data2: any = data;
+        this.tokenStorage.saveToken(data2['token']);
+        this.tokenStorage.saveUser(data2['user']);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;

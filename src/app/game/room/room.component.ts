@@ -9,18 +9,18 @@ import { User } from 'src/app/_include/user.model';
   styleUrls: ['./room.component.css']
 })
 export class RoomComponent implements OnInit {
+  user: User;
   isGame = false;
   isFailedPrivateAdd = false;
   privateAddErrorMessage = "";
-  gameID: string = null;
+  gameID: string = "";
   game: any;
 
-  constructor(private token: TokenStorageService, private gameService: GameService) { }
-  user: User;
-
-  ngOnInit(): void {
+  constructor(private token: TokenStorageService, private gameService: GameService) {
     this.user = this.token.getUser();
   }
+
+  ngOnInit(): void { }
 
   openGame () {
     if(this.gameID)
@@ -40,8 +40,9 @@ export class RoomComponent implements OnInit {
     this.gameService.CreateGame(roomStatus, privateRoom,
       players, unusedCards, storytellerID, story, storytellerCard, winner).subscribe(
       data => {
-        if(data["game"] != null){
-          this.game = data["game"];
+        let data2: any = data;
+        if(data2["game"] != null){
+          this.game = data2["game"];
           this.isGame = true;
           this.gameID = this.game["_id"];
           this.isFailedPrivateAdd = false;
@@ -60,15 +61,16 @@ export class RoomComponent implements OnInit {
   joinPrivate (id: string) {
     let userID = this.user["username"];
     let score = this.user["score"];
-    let cards: number[] = null;
+    let cards: number[] = [];
     let playedCard: string = "";
     let votedCard: string = "";
     let _id = id;
     console.log (userID, score, cards, _id);
     this.gameService.JoinPrivateGame(userID, score, cards, playedCard, votedCard, _id).subscribe(
       data => {
-        if(data["game"] != null){
-          this.game = data["game"];
+        let data2: any = data;
+        if(data2["game"] != null){
+          this.game = data2["game"];
           this.isGame = true;
           this.gameID = this.game["_id"];
           this.isFailedPrivateAdd = false;
@@ -77,7 +79,7 @@ export class RoomComponent implements OnInit {
         } else {
           this.isFailedPrivateAdd = true;
           this.privateAddErrorMessage = "Game ID is incorect. Try another ID.";
-          console.log("join private game unsuccessful "+JSON.stringify({game: data["game"]}, null, 4));
+          console.log("join private game unsuccessful "+JSON.stringify({game: data2["game"]}, null, 4));
         }
       },
       err => {
@@ -91,14 +93,15 @@ export class RoomComponent implements OnInit {
   joinPublic () {
     let userID = this.user["username"];
     let score = this.user["score"];
-    let cards: number[] = null;
+    let cards: number[] = [];
     let playedCard: string = "";
     let votedCard: string = "";
     console.log (userID, score, cards);
     this.gameService.JoinPublicGame(userID, score, cards, playedCard, votedCard).subscribe(
       data => {
-        if(data["game"] != null){
-          this.game = data["game"];
+        let data2: any = data;
+        if(data2["game"] != null){
+          this.game = data2["game"];
           this.isGame = true;
           this.gameID = this.game["_id"];
           this.isFailedPrivateAdd = false;
@@ -107,7 +110,7 @@ export class RoomComponent implements OnInit {
         } else {
           this.isFailedPrivateAdd = true;
           this.privateAddErrorMessage = "Game ID is incorect. Try another ID.";
-          console.log("join private game unsuccessful "+JSON.stringify({game: data["game"]}, null, 4));
+          console.log("join private game unsuccessful "+JSON.stringify({game: data2["game"]}, null, 4));
         }
       },
       err => {
