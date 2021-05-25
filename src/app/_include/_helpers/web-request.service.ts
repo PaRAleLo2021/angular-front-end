@@ -9,8 +9,8 @@ export class WebRequestService {
   readonly ROOT_URL_GAME;
 
   constructor(private http: HttpClient) { 
-    this.ROOT_URL_USER = 'http://localhost:1337';
-    this.ROOT_URL_GAME = 'http://localhost:1338';
+    this.ROOT_URL_USER = 'https://user-y4shapg4za-lm.a.run.app';
+    this.ROOT_URL_GAME = 'https://room-y4shapg4za-lm.a.run.app';
   }
 
   getUser(uri: string){
