@@ -13,6 +13,10 @@ export class SignInComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
 
+  message: string = "";
+  isMessage = false;
+  isError = false;
+
   constructor(private userService: UserService, private tokenStorage: TokenStorageService, private router: Router) { }
 
   ngOnInit(): void {
@@ -34,7 +38,8 @@ export class SignInComponent implements OnInit {
         console.log("logged in successfull "+data);
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.message = err["error"]["message"];
+        this.isError = true;
         this.isLoginFailed = true;
         console.log("logged in failed "+err);
       }

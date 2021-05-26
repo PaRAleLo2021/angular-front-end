@@ -4,6 +4,13 @@
       <div class="px-logo" fxLayoutAlign="center center" >
         <img height="100px" style="padding-top: 80px; padding-bottom: 20px;" src="../../assets/login.png" alt="login">
       </div>
+
+      <div *ngIf="isError" fxLayoutAlign="center center">
+        <mat-card width="400px" style="background-color: #f8d7da; margin-bottom: 20px"><mat-card-subtitle>{{message}}</mat-card-subtitle></mat-card>
+      </div>
+      <div *ngIf="isMessage" fxLayoutAlign="center center">
+        <mat-card width="400px" style="background-color: #c3e6cb; margin-bottom: 20px"><mat-card-subtitle>{{message}}</mat-card-subtitle></mat-card>
+      </div>
   
       <div class="authBlock" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
         <mat-form-field>
