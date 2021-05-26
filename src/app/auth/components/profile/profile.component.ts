@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   email: string;
   username: string;
   password: string;
+  isMessage = false;
   
 
   constructor(public dialog: MatDialog, private token: TokenStorageService, private userService: UserService) {
@@ -35,13 +36,19 @@ export class ProfileComponent implements OnInit {
     this.userService.UpdateProfile(this.currentUser._id,username, email, password).subscribe(
       data => {
         let data2: any = data;
+        this.token.saveUser(data2["user"]);
+        this.currentUser = this.token.getUser();
+        this.username = data2["user"]["username"];
+        this.email = data2["user"]["email"];
         console.log("logged in successfull "+data2["user"]);
+        
+        this.isMessage = true;
+        this.isEditable = false;
       },
       err => {
-        console.log("logged in failed "+err);
+        console.log("update failed "+err);
       }
     );
-    this.logout();
   }
 
   logout(): void {

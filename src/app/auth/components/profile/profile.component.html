@@ -1,7 +1,11 @@
 <div class="container" >
 <mat-card class="example-card" fxLayout="row wrap" fxLayoutGap="20px" fxFlexAlign="center" *ngIf="!isEditable">
     <!--<div mat-card-image style="background-image: url(https://live.staticflickr.com/2194/5777504398_f26aa98485_n.jpg); background-size: cover; background-position: 50%" alt="player-avatar"></div>-->
+    
     <mat-card-header>
+        <mat-card-subtitle mat-card *ngIf="isMessage" style="background-color: #c3e6cb; width: 300px; margin-bottom: 20px; padding: 10px !important">
+            User Profile Updated Successfully
+        </mat-card-subtitle>
         <mat-card-title>{{currentUser.username}}</mat-card-title>
         <mat-card-subtitle>Email: {{currentUser.email}}</mat-card-subtitle>
         <mat-card-subtitle>Current score: <b>{{currentUser.score}}</b></mat-card-subtitle>
