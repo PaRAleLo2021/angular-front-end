@@ -62,8 +62,8 @@ export class RoomComponent implements OnInit {
     let userID = this.user["username"];
     let score = this.user["score"];
     let cards: number[] = [];
-    let playedCard: string = "";
-    let votedCard: string = "";
+    let playedCard: string = "1";
+    let votedCard: string = "2";
     let _id:any = id;
     console.log (userID, score, cards, _id);
     this.gameService.JoinPrivateGame(userID, score, cards, playedCard, votedCard, _id).subscribe(
@@ -94,8 +94,8 @@ export class RoomComponent implements OnInit {
     let userID = this.user["username"];
     let score = this.user["score"];
     let cards: number[] = [];
-    let playedCard: string = "";
-    let votedCard: string = "";
+    let playedCard: string = "1";
+    let votedCard: string = "2";
     console.log (userID, score, cards);
     this.gameService.JoinPublicGame(userID, score, cards, playedCard, votedCard).subscribe(
       data => {
